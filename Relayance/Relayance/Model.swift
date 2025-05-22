@@ -49,13 +49,17 @@ struct Client: Codable, Hashable {
         return true
     }
     
+//    func clientExiste(clientsList: [Client]) -> Bool {
+//        if clientsList.contains(where: { $0 == self }) {
+//            return true
+//        }
+//        return false
+//    }
     func clientExiste(clientsList: [Client]) -> Bool {
-        if clientsList.contains(where: { $0 == self }) {
-            return true
-        }
-        return false
+        // Vérifier si un client avec le même email existe déjà dans la liste
+        return clientsList.contains { $0.email.lowercased() == self.email.lowercased() }
     }
-    
+
     func formatDateVersString() -> String {
         return Date.stringFromDate(self.dateCreation) ?? self.dateCreationString
     }
