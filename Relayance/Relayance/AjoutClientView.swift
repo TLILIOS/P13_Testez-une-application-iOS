@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AjoutClientView: View {
+    @ObservedObject var viewModel: ClientViewModel
     @Binding var dismissModal: Bool
     @State var nom: String = ""
     @State var email: String = ""
@@ -24,7 +25,8 @@ struct AjoutClientView: View {
             TextField("Email", text: $email)
                 .font(.title2)
             Button("Ajouter") {
-                //Ajout d'un client
+                // Utilisation du ViewModel pour ajouter un client
+                viewModel.addClient(nom: nom, email: email)
                 dismissModal.toggle()
             }
             .padding(.horizontal, 50)
@@ -41,5 +43,5 @@ struct AjoutClientView: View {
 }
 
 #Preview {
-    AjoutClientView(dismissModal: .constant(false))
+    AjoutClientView(viewModel: ClientViewModel(), dismissModal: .constant(false))
 }

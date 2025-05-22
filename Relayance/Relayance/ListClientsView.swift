@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct ListClientsView: View {
-    @State var clientsList: [Client] = ModelData.chargement("Source.json")
+    // Utilisation du viewModel avec @ObservedObject pour observer les changements
+    @ObservedObject var viewModel: ClientViewModel
     @State private var showModal: Bool = false
     
     var body: some View {
         NavigationStack {
-            List(clientsList, id: \.self) { client in
+            List(viewModel.clients, id: \.self) { client in
                 NavigationLink {
-                    DetailClientView(client: client)
+                    DetailClientView(viewModel: viewModel, client: client)
                 } label: {
                     Text(client.nom)
                         .font(.title3)
@@ -32,13 +33,12 @@ struct ListClientsView: View {
                 }
             }
             .sheet(isPresented: $showModal, content: {
-                AjoutClientView(dismissModal: $showModal)
+                AjoutClientView(viewModel: viewModel, dismissModal: $showModal)
             })
         }
     }
-
 }
 
 #Preview {
-    ListClientsView()
+    ListClientsView(viewModel: ClientViewModel())
 }

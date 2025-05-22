@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct RelayanceApp: App {
+    // Initialisation du ViewModel comme StateObject pour qu'il persiste pendant toute la durée de vie de l'application
+    @StateObject private var clientViewModel = ClientViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            ListClientsView()
+            // Injection du ViewModel dans la vue principale
+            ListClientsView(viewModel: clientViewModel)
         }
     }
 }
