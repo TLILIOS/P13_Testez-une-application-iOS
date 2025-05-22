@@ -1,8 +1,8 @@
 //
-//  MainViewModel.swift
+//  ClientViewModel.swift
 //  Relayance
 //
-//  Created by TLiLi Hamdi on 22/05/2025.
+//  Created on 22/05/2025.
 //
 
 import Foundation
@@ -28,13 +28,13 @@ class ClientViewModel: ObservableObject {
         let newClient = Client.creerNouveauClient(nom: nom, email: email)
         
         // Vérifier si le client existe déjà
-        if !newClient.clientExiste(clientsList: clients) {
+        let clientExists = newClient.clientExiste(clientsList: clients)
+        if !clientExists {
             clients.append(newClient)
-            return true  // Client was added successfully
+            return true
         }
-        return false  // Client already exists
+        return false
     }
-
     
     // Supprimer un client
     func deleteClient(client: Client) {

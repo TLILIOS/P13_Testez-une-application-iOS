@@ -13,6 +13,7 @@ struct Client: Codable, Hashable {
     private var dateCreationString: String
     var dateCreation: Date {
         Date.dateFromString(dateCreationString) ?? Date.now
+
     }
     
     enum CodingKeys: String, CodingKey {
@@ -32,7 +33,7 @@ struct Client: Codable, Hashable {
     static func creerNouveauClient(nom: String, email: String) -> Client {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-        
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
         return Client(nom: nom, email: email, dateCreationString: dateFormatter.string(from: Date.now))
     }
     
@@ -58,4 +59,6 @@ struct Client: Codable, Hashable {
     func formatDateVersString() -> String {
         return Date.stringFromDate(self.dateCreation) ?? self.dateCreationString
     }
+    
+    
 }

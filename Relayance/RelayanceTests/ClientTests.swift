@@ -73,18 +73,20 @@ final class ClientTests: XCTestCase {
         XCTAssertEqual(client.nom, nom, "Le nom devrait être correctement assigné")
         XCTAssertEqual(client.email, email, "L'email devrait être correctement assigné")
         
-        // Vérification que la date est proche de maintenant (dans la même minute)
-        let calendar = Calendar.current
+        // Vérification que la date est proche de maintenant (moins de 60 secondes d'écart)
         let maintenant = Date.now
-        let composantsMaintenant = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: maintenant)
-        let composantsClient = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: client.dateCreation)
-        let differenceInHours = abs(composantsClient.hour! - composantsMaintenant.hour!)
+        let difference = abs(client.dateCreation.timeIntervalSince(maintenant))
+        XCTAssertLessThanOrEqual(difference, 60, "La date de création doit être inférieure à 60 secondes de la date actuelle")
+        
+        // Vérification des composantes de date (optionnel)
+        let calendar = Calendar.current
+        let composantsMaintenant = calendar.dateComponents([.year, .month, .day], from: maintenant)
+        let composantsClient = calendar.dateComponents([.year, .month, .day], from: client.dateCreation)
         XCTAssertEqual(composantsClient.year, composantsMaintenant.year, "L'année devrait être celle d'aujourd'hui")
         XCTAssertEqual(composantsClient.month, composantsMaintenant.month, "Le mois devrait être celui d'aujourd'hui")
         XCTAssertEqual(composantsClient.day, composantsMaintenant.day, "Le jour devrait être celui d'aujourd'hui")
-        XCTAssertLessThanOrEqual(differenceInHours, 1, "L'heure devrait être proche de maintenant")
-
     }
+
     
     func testCreerNouveauClientWithEmptyData() {
         // MARK: - Given
@@ -223,4 +225,7 @@ final class ClientTests: XCTestCase {
         let expectedDateString = dateFormatter.string(from: Date.now)
         XCTAssertEqual(dateFormatee, expectedDateString, "La date formatée devrait correspondre à la date d'aujourd'hui")
     }
+ 
+    
+
 }

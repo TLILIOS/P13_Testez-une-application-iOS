@@ -24,6 +24,7 @@
 		D0B2003C2DDEA1A7009C2386 /* DateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B2003B2DDEA1A7009C2386 /* DateExtensionTests.swift */; };
 		D0B2003E2DDEA25A009C2386 /* ModelDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B2003D2DDEA25A009C2386 /* ModelDataTests.swift */; };
 		D0F1EF202DDF289000AE2490 /* ClientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F1EF1F2DDF289000AE2490 /* ClientViewModel.swift */; };
+		D0F1EF242DDF2D5700AE2490 /* Scénarios.txt in Resources */ = {isa = PBXBuildFile; fileRef = D0F1EF232DDF2D5700AE2490 /* Scénarios.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		D0B2003B2DDEA1A7009C2386 /* DateExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensionTests.swift; sourceTree = "<group>"; };
 		D0B2003D2DDEA25A009C2386 /* ModelDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDataTests.swift; sourceTree = "<group>"; };
 		D0F1EF1F2DDF289000AE2490 /* ClientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewModel.swift; sourceTree = "<group>"; };
+		D0F1EF232DDF2D5700AE2490 /* Scénarios.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Scénarios.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				422740F42C3ECFCA00E7522C /* ListClientsView.swift */,
 				422740F62C3ECFD600E7522C /* ModelData.swift */,
 				422740F82C3ED02400E7522C /* Source.json */,
+				D0F1EF232DDF2D5700AE2490 /* Scénarios.txt */,
 				422740FA2C3ED0EE00E7522C /* DetailClientView.swift */,
 				422740FC2C3ED18D00E7522C /* AjoutClientView.swift */,
 				D0F1EF1C2DDF27F300AE2490 /* ViewModel */,
@@ -269,6 +272,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0F1EF242DDF2D5700AE2490 /* Scénarios.txt in Resources */,
 				422740782C3BF4DD00E7522C /* Preview Assets.xcassets in Resources */,
 				422740F92C3ED02400E7522C /* Source.json in Resources */,
 				422740752C3BF4DD00E7522C /* Assets.xcassets in Resources */,
