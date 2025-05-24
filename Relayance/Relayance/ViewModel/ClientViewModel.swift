@@ -7,9 +7,9 @@
 
 import Foundation
 import SwiftUI
-import Combine
 
-class ClientViewModel: ObservableObject {
+@MainActor
+final class ClientViewModel: ObservableObject {
     // Published property pour la liste des clients, ce qui permettra aux vues de réagir aux changements
     @Published var clients: [Client] = []
     

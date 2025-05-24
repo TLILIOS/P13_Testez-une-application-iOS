@@ -54,9 +54,9 @@ struct Client: Codable, Hashable {
         return clientsList.contains { $0.email.lowercased() == self.email.lowercased() }
     }
 
-    func formatDateVersString() -> String {
-        return Date.stringFromDate(self.dateCreation) ?? self.dateCreationString
-    }
-    
+    func formatDateVersString(dateFormatter: ((Date) -> String?)? = nil) -> String {
+            let formatter = dateFormatter ?? Date.stringFromDate
+            return formatter(self.dateCreation) ?? self.dateCreationString
+        }
     
 }

@@ -7,7 +7,7 @@
 
 import XCTest
 @testable import Relayance
-
+@MainActor
 final class ClientViewModelIntegrationTests: XCTestCase {
     
     var viewModel: ClientViewModel!

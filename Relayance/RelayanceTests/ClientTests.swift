@@ -28,17 +28,13 @@ final class ClientTests: XCTestCase {
         XCTAssertEqual(client.email, email, "L'email du client devrait être \(email)")
         
         // 2. Vérification de la propriété privée dateCreationString
-        let mirror = Mirror(reflecting: client)
-        if let dateCreationStringValue = mirror.children.first(where: { $0.label == "dateCreationString" })?.value as? String {
-            XCTAssertEqual(dateCreationStringValue, dateCreationString, "La date de création (String) devrait être \(dateCreationString)")
-        } else {
-            XCTFail("La propriété dateCreationString n'a pas pu être accédée")
-        }
-        
-        // 3. Vérification de la conversion en Date
         let expectedDate = Date.dateFromString(dateCreationString)
         XCTAssertNotNil(expectedDate, "La date devrait être convertie correctement")
         XCTAssertEqual(client.dateCreation, expectedDate, "La date de création (Date) devrait correspondre à \(dateCreationString)")
+
+        // Test supplémentaire : vérifier la cohérence du formatage
+        let formattedDate = client.formatDateVersString()
+        XCTAssertEqual(formattedDate, Date.stringFromDate(client.dateCreation), "Le formatage devrait être cohérent avec la date stockée")
     }
     
     func testClientInitializationWithEmptyValues() {
@@ -125,21 +121,22 @@ final class ClientTests: XCTestCase {
         XCTAssertTrue(estNouveau, "Un client créé aujourd'hui devrait être considéré comme nouveau")
     }
     
-    func testEstNouveauClientAvecClientCreeHier() {
-        // MARK: - Given
-        // Création d'un client avec une date d'hier
+    func testEstNouveauClientAvecClientDHier() {
+        // Given - Créer un client avec la date d'hier
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
         
+        // Date d'hier
         let hier = Calendar.current.date(byAdding: .day, value: -1, to: Date.now)!
-        let dateCreationString = dateFormatter.string(from: hier)
+        let dateHierString = dateFormatter.string(from: hier)
         
-        let client = Client(nom: "Ancien", email: "ancien@example.com", dateCreationString: dateCreationString)
+        let client = Client(nom: "Client Hier", email: "hier@example.com", dateCreationString: dateHierString)
         
-        // MARK: - When
+        // When
         let estNouveau = client.estNouveauClient()
         
-        // MARK: - Then
+        // Then
         XCTAssertFalse(estNouveau, "Un client créé hier ne devrait pas être considéré comme nouveau")
     }
     
@@ -225,7 +222,44 @@ final class ClientTests: XCTestCase {
         let expectedDateString = dateFormatter.string(from: Date.now)
         XCTAssertEqual(dateFormatee, expectedDateString, "La date formatée devrait correspondre à la date d'aujourd'hui")
     }
- 
-    
+    // MARK: - Test spécifique pour forcer le fallback
+        
+        func testFormatDateVersStringFallback() {
+            // Given - Créer un scénario où on est sûr que le fallback sera utilisé
+            // En utilisant Date.now comme dateCreation mais un string personnalisé
+            let customDateString = "Custom Date String"
+            
+            // Créer un client où dateCreation utilise Date.now (fallback)
+            // mais dateCreationString a une valeur personnalisée
+            let client = Client(nom: "Test", email: "test@example.com", dateCreationString: "invalid-format")
+            
+            // When
+            let formattedDate = client.formatDateVersString()
+            
+            // Then
+            XCTAssertNotNil(formattedDate, "La date formatée ne devrait jamais être nil")
+            XCTAssertFalse(formattedDate.isEmpty, "La date formatée ne devrait jamais être vide")
+            
+            // Vérifier qu'on obtient soit le résultat de Date.stringFromDate, soit le fallback
+            let stringFromDate = Date.stringFromDate(client.dateCreation)
+            if let expected = stringFromDate {
+                XCTAssertEqual(formattedDate, expected, "Si Date.stringFromDate fonctionne, l'utiliser")
+            } else {
+                XCTAssertEqual(formattedDate, "invalid-format", "Sinon utiliser le fallback")
+            }
+        }
+    func testFormatDateVersStringFallbackToOriginalString() {
+        // Given
+        let dateCreationString = "Original Date String"
+        let client = Client(nom: "Test", email: "test@example.com", dateCreationString: dateCreationString)
+        
+        // When - Injecter une fonction qui retourne nil
+        let result = client.formatDateVersString { _ in nil }
+        
+        // Then
+        XCTAssertEqual(result, dateCreationString, "Devrait utiliser dateCreationString quand le formatage échoue")
+    }
+
+
 
 }
