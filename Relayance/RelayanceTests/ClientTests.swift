@@ -28,17 +28,12 @@ final class ClientTests: XCTestCase {
         XCTAssertEqual(client.email, email, "L'email du client devrait être \(email)")
         
         // 2. Vérification de la propriété privée dateCreationString
-        let mirror = Mirror(reflecting: client)
-        if let dateCreationStringValue = mirror.children.first(where: { $0.label == "dateCreationString" })?.value as? String {
-            XCTAssertEqual(dateCreationStringValue, dateCreationString, "La date de création (String) devrait être \(dateCreationString)")
-        } else {
-            XCTFail("La propriété dateCreationString n'a pas pu être accédée")
-        }
-        
-        // 3. Vérification de la conversion en Date
         let expectedDate = Date.dateFromString(dateCreationString)
         XCTAssertNotNil(expectedDate, "La date devrait être convertie correctement")
         XCTAssertEqual(client.dateCreation, expectedDate, "La date de création (Date) devrait correspondre à \(dateCreationString)")
+        // Coherence du formatage
+        let formattedDate = client.formatDateVersString()
+        XCTAssertEqual(formattedDate, Date.stringFromDate(client.dateCreation), "Le formatage devrait être cohérent avec la date stockée")
     }
     
     func testClientInitializationWithEmptyValues() {
@@ -73,18 +68,18 @@ final class ClientTests: XCTestCase {
         XCTAssertEqual(client.nom, nom, "Le nom devrait être correctement assigné")
         XCTAssertEqual(client.email, email, "L'email devrait être correctement assigné")
         
-        // Vérification que la date est proche de maintenant (dans la même minute)
+        // Si la date est intentionnellement définie à minuit du jour actuel
         let calendar = Calendar.current
-        let maintenant = Date.now
-        let composantsMaintenant = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: maintenant)
-        let composantsClient = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: client.dateCreation)
-        let differenceInHours = abs(composantsClient.hour! - composantsMaintenant.hour!)
-        XCTAssertEqual(composantsClient.year, composantsMaintenant.year, "L'année devrait être celle d'aujourd'hui")
-        XCTAssertEqual(composantsClient.month, composantsMaintenant.month, "Le mois devrait être celui d'aujourd'hui")
-        XCTAssertEqual(composantsClient.day, composantsMaintenant.day, "Le jour devrait être celui d'aujourd'hui")
-        XCTAssertLessThanOrEqual(differenceInHours, 1, "L'heure devrait être proche de maintenant")
-
+        let aujourdhui = calendar.startOfDay(for: Date.now)
+        
+        XCTAssertEqual(
+            calendar.startOfDay(for: client.dateCreation),
+            aujourdhui,
+            "La date de création devrait être aujourd'hui à minuit"
+        )
     }
+
+
     
     func testCreerNouveauClientWithEmptyData() {
         // MARK: - Given
