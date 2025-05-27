@@ -10,9 +10,6 @@
 		422740712C3BF4DC00E7522C /* RelayanceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422740702C3BF4DC00E7522C /* RelayanceApp.swift */; };
 		422740752C3BF4DD00E7522C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 422740742C3BF4DD00E7522C /* Assets.xcassets */; };
 		422740782C3BF4DD00E7522C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 422740772C3BF4DD00E7522C /* Preview Assets.xcassets */; };
-		422740822C3BF4DD00E7522C /* RelayanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422740812C3BF4DD00E7522C /* RelayanceTests.swift */; };
-		4227408C2C3BF4DD00E7522C /* RelayanceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4227408B2C3BF4DD00E7522C /* RelayanceUITests.swift */; };
-		4227408E2C3BF4DD00E7522C /* RelayanceUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4227408D2C3BF4DD00E7522C /* RelayanceUITestsLaunchTests.swift */; };
 		422740ED2C3ECCF900E7522C /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422740EC2C3ECCF900E7522C /* Model.swift */; };
 		422740EF2C3ECD1500E7522C /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422740EE2C3ECD1500E7522C /* DateExtension.swift */; };
 		422740F52C3ECFCA00E7522C /* ListClientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422740F42C3ECFCA00E7522C /* ListClientsView.swift */; };
@@ -29,7 +26,6 @@
 		D0D3062C2DE12404001859BF /* TestStruct.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D3062B2DE12403001859BF /* TestStruct.json */; };
 		D0D3062E2DE14B7F001859BF /* TestClients.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D3062D2DE14B7F001859BF /* TestClients.json */; };
 		D0F1EF202DDF289000AE2490 /* ClientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F1EF1F2DDF289000AE2490 /* ClientViewModel.swift */; };
-		D0F1EF242DDF2D5700AE2490 /* Scénarios.txt in Resources */ = {isa = PBXBuildFile; fileRef = D0F1EF232DDF2D5700AE2490 /* Scénarios.txt */; };
 		D0F1EF282DDF532500AE2490 /* ClientViewModelIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F1EF272DDF532500AE2490 /* ClientViewModelIntegrationTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,10 +52,7 @@
 		422740742C3BF4DD00E7522C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		422740772C3BF4DD00E7522C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4227407D2C3BF4DD00E7522C /* RelayanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RelayanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		422740812C3BF4DD00E7522C /* RelayanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayanceTests.swift; sourceTree = "<group>"; };
 		422740872C3BF4DD00E7522C /* RelayanceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RelayanceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4227408B2C3BF4DD00E7522C /* RelayanceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayanceUITests.swift; sourceTree = "<group>"; };
-		4227408D2C3BF4DD00E7522C /* RelayanceUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayanceUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		422740EC2C3ECCF900E7522C /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		422740EE2C3ECD1500E7522C /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		422740F42C3ECFCA00E7522C /* ListClientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListClientsView.swift; sourceTree = "<group>"; };
@@ -76,7 +69,6 @@
 		D0D3062B2DE12403001859BF /* TestStruct.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TestStruct.json; sourceTree = "<group>"; };
 		D0D3062D2DE14B7F001859BF /* TestClients.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TestClients.json; sourceTree = "<group>"; };
 		D0F1EF1F2DDF289000AE2490 /* ClientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewModel.swift; sourceTree = "<group>"; };
-		D0F1EF232DDF2D5700AE2490 /* Scénarios.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Scénarios.txt"; sourceTree = "<group>"; };
 		D0F1EF272DDF532500AE2490 /* ClientViewModelIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewModelIntegrationTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,7 +102,6 @@
 			children = (
 				4227406F2C3BF4DC00E7522C /* Relayance */,
 				422740802C3BF4DD00E7522C /* RelayanceTests */,
-				4227408A2C3BF4DD00E7522C /* RelayanceUITests */,
 				4227406E2C3BF4DC00E7522C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -136,7 +127,6 @@
 				422740F42C3ECFCA00E7522C /* ListClientsView.swift */,
 				422740F62C3ECFD600E7522C /* ModelData.swift */,
 				422740F82C3ED02400E7522C /* Source.json */,
-				D0F1EF232DDF2D5700AE2490 /* Scénarios.txt */,
 				422740FA2C3ED0EE00E7522C /* DetailClientView.swift */,
 				422740FC2C3ED18D00E7522C /* AjoutClientView.swift */,
 				D0F1EF1C2DDF27F300AE2490 /* ViewModel */,
@@ -156,22 +146,12 @@
 			isa = PBXGroup;
 			children = (
 				D0D306222DE0C1FF001859BF /* TestResources */,
-				422740812C3BF4DD00E7522C /* RelayanceTests.swift */,
 				D0B200392DDE9C11009C2386 /* ClientTests.swift */,
 				D0B2003B2DDEA1A7009C2386 /* DateExtensionTests.swift */,
 				D0B2003D2DDEA25A009C2386 /* ModelDataTests.swift */,
 				D0F1EF272DDF532500AE2490 /* ClientViewModelIntegrationTests.swift */,
 			);
 			path = RelayanceTests;
-			sourceTree = "<group>";
-		};
-		4227408A2C3BF4DD00E7522C /* RelayanceUITests */ = {
-			isa = PBXGroup;
-			children = (
-				4227408B2C3BF4DD00E7522C /* RelayanceUITests.swift */,
-				4227408D2C3BF4DD00E7522C /* RelayanceUITestsLaunchTests.swift */,
-			);
-			path = RelayanceUITests;
 			sourceTree = "<group>";
 		};
 		D0D306222DE0C1FF001859BF /* TestResources */ = {
@@ -298,7 +278,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0F1EF242DDF2D5700AE2490 /* Scénarios.txt in Resources */,
 				422740782C3BF4DD00E7522C /* Preview Assets.xcassets in Resources */,
 				422740F92C3ED02400E7522C /* Source.json in Resources */,
 				422740752C3BF4DD00E7522C /* Assets.xcassets in Resources */,
@@ -347,7 +326,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0B2003A2DDE9C11009C2386 /* ClientTests.swift in Sources */,
-				422740822C3BF4DD00E7522C /* RelayanceTests.swift in Sources */,
 				D0B2003E2DDEA25A009C2386 /* ModelDataTests.swift in Sources */,
 				D0B2003C2DDEA1A7009C2386 /* DateExtensionTests.swift in Sources */,
 				D0F1EF282DDF532500AE2490 /* ClientViewModelIntegrationTests.swift in Sources */,
@@ -358,8 +336,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4227408C2C3BF4DD00E7522C /* RelayanceUITests.swift in Sources */,
-				4227408E2C3BF4DD00E7522C /* RelayanceUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

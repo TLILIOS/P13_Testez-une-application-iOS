@@ -32,7 +32,7 @@ final class ClientViewModelIntegrationTests: XCTestCase {
         let email = "martin@example.com"
         
         // MARK: - When
-        let resultat = viewModel.addClient(nom: nom, email: email)
+        let resultat = viewModel.tryAddClient(nom: nom, email: email)
         
         // MARK: - Then
         XCTAssertTrue(resultat, "L'ajout du client devrait réussir")
@@ -48,11 +48,11 @@ final class ClientViewModelIntegrationTests: XCTestCase {
         let email = "martin@example.com"
         
         // Ajout du premier client
-        _ = viewModel.addClient(nom: nom, email: email)
+        _ = viewModel.tryAddClient(nom: nom, email: email)
         
         // MARK: - When
         // Tentative d'ajout du même client
-        let resultat = viewModel.addClient(nom: nom, email: email)
+        let resultat = viewModel.tryAddClient(nom: nom, email: email)
         
         // MARK: - Then
         XCTAssertFalse(resultat, "L'ajout du client devrait échouer car il existe déjà")
@@ -65,7 +65,7 @@ final class ClientViewModelIntegrationTests: XCTestCase {
         let emailInvalide = "alice.example.com" // Manque le @ dans l'email
         
         // MARK: - When
-        let resultat = viewModel.addClient(nom: nom, email: emailInvalide)
+        let resultat = viewModel.tryAddClient(nom: nom, email: emailInvalide)
         
         // MARK: - Then
         // Note: Dans cette implémentation, la validation de l'email n'est pas effectuée
@@ -82,7 +82,7 @@ final class ClientViewModelIntegrationTests: XCTestCase {
         let email = "contact@example.com"
         
         // MARK: - When
-        let resultat = viewModel.addClient(nom: nom, email: email)
+        let resultat = viewModel.tryAddClient(nom: nom, email: email)
         
         // MARK: - Then
         // Note: Dans cette implémentation, la validation du nom n'est pas effectuée
@@ -98,7 +98,7 @@ final class ClientViewModelIntegrationTests: XCTestCase {
         // Ajout d'un client
         let nom = "Jean Dupont"
         let email = "jean@example.com"
-        _ = viewModel.addClient(nom: nom, email: email)
+        _ = viewModel.tryAddClient(nom: nom, email: email)
         
         // Récupération du client ajouté
         let client = viewModel.clients[0]
@@ -113,7 +113,7 @@ final class ClientViewModelIntegrationTests: XCTestCase {
     func testSuppressionClientInexistant() {
         // MARK: - Given
         // Ajout d'un client
-        _ = viewModel.addClient(nom: "Jean Dupont", email: "jean@example.com")
+        _ = viewModel.tryAddClient(nom: "Jean Dupont", email: "jean@example.com")
         
         // Création d'un client différent qui n'est pas dans la liste
         let clientInexistant = Client.creerNouveauClient(nom: "Pierre Martin", email: "pierre@example.com")
@@ -130,7 +130,7 @@ final class ClientViewModelIntegrationTests: XCTestCase {
     func testVerificationNouveauClient() {
         // MARK: - Given
         // Ajout d'un client qui sera forcément créé aujourd'hui
-        _ = viewModel.addClient(nom: "Sophie Durand", email: "sophie@example.com")
+        _ = viewModel.tryAddClient(nom: "Sophie Durand", email: "sophie@example.com")
         let client = viewModel.clients[0]
         
         // MARK: - When

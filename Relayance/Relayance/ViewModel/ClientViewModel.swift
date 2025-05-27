@@ -24,7 +24,7 @@ final class ClientViewModel: ObservableObject {
     }
     
     // Ajouter un nouveau client
-    func addClient(nom: String, email: String) -> Bool {
+    func tryAddClient(nom: String, email: String) -> Bool {
         let newClient = Client.creerNouveauClient(nom: nom, email: email)
         
         // Vérifier si le client existe déjà

@@ -67,7 +67,7 @@ struct AjoutClientView: View {
                 }
                 
                 // Utilisation du ViewModel pour ajouter un client
-                let result = viewModel.addClient(nom: nom, email: email)
+                let result = viewModel.tryAddClient(nom: nom, email: email)
                 
                 // Si l'ajout a échoué, c'est un email dupliqué
                 if !result {
