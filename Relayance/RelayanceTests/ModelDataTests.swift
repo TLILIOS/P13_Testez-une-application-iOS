@@ -5,38 +5,63 @@
 //  Created by TLiLi Hamdi on 20/05/2025.
 //
 
-
 import XCTest
 @testable import Relayance
 
 final class ModelDataTests: XCTestCase {
     
-    // MARK: - Tests pour la fonction chargement
+    func testLoadClientsFromJSON() throws {
+        // Act
+        let clients: [Client] = try loadJSON(from: "TestClients", as: [Client].self)
+        
+        // Assert
+        XCTAssertEqual(clients.count, 2)
+        XCTAssertEqual(clients[0].nom, "Jean Dupont")
+        XCTAssertEqual(clients[1].email, "marie.martin@example.com")
+    } 
     
-    func testChargementAvecFichierValide() {
-        // Note: Ce test suppose qu'il existe un fichier 'Source.json' dans le bundle
-        // qui contient une liste de clients valide.
+    func testLoadEmptyClientsArray() throws {
+        // Act
+        let clients: [Client] = try loadJSON(from: "EmptyClients", as: [Client].self)
         
-        // MARK: - Given
-        // Aucune préparation
-        
-        // MARK: - When
-        let clients: [Client] = ModelData.chargement("Source.json")
-        
-        // MARK: - Then
-        XCTAssertFalse(clients.isEmpty, "Le chargement devrait retourner au moins un client")
-        
-        // Vérification que chaque client a des propriétés valides
-        for client in clients {
-                    XCTAssertFalse(client.nom.isEmpty, "Le nom du client ne devrait pas être vide")
-                    XCTAssertFalse(client.email.isEmpty, "L'email du client ne devrait pas être vide")
-                    
-                    // Solution 1: Propriété publique ou computed property
-                    XCTAssertNotNil(client.dateCreation, "La date de création ne devrait pas être nulle")
-                    // ou si c'est une String:
-                    // XCTAssertFalse(client.dateCreationString.isEmpty, "La date de création ne devrait pas être vide")
-                }
+        // Assert
+        XCTAssertTrue(clients.isEmpty)
     }
     
+    func testLoadInvalidJSON() {
+        // Act & Assert
+        XCTAssertThrowsError(try loadJSON(from: "InvalidClients", as: [Client].self)) { error in
+            XCTAssertTrue(error is DecodingError)
+        }
+    }
     
+    func testModelDataWithRealFile() throws {
+        
+        let clients: [Client] = try loadJSON(from: "TestClients", as: [Client].self)
+        XCTAssertEqual(clients.count, 2)
+        XCTAssertEqual(clients[0].nom, "Jean Dupont")
+    }
+}
+
+extension XCTestCase {
+    
+    func loadJSONData(from fileName: String, bundle: Bundle? = nil) throws -> Data {
+        let testBundle = bundle ?? Bundle(for: type(of: self))
+        
+        guard let url = testBundle.url(forResource: fileName, withExtension: "json") else {
+            throw TestError.fileNotFound(fileName)
+        }
+        
+        return try Data(contentsOf: url)
+    }
+    
+    func loadJSON<T: Decodable>(from fileName: String, as type: T.Type) throws -> T {
+        let data = try loadJSONData(from: fileName)
+        return try JSONDecoder().decode(type, from: data)
+    }
+    
+    enum TestError: Error {
+        case fileNotFound(String)
+    }
+
 }
