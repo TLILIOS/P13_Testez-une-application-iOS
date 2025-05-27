@@ -1,0 +1,12 @@
+[
+    {
+        "nom": "Jean Dupont",
+        "email": "jean.dupont@example.com",
+        "date_creation": "2025-05-24T08:30:00.000Z"
+    },
+    {
+        "nom": "Marie Martin",
+        "email": "marie.martin@example.com",
+        "date_creation": "2025-05-23T14:15:00.000Z"
+    }
+]
